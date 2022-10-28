@@ -1,0 +1,40 @@
+version: "3"
+services:
+  odoo:    
+    build:
+      context: .
+      args:
+        ODOO_RELEASE: ${ODOO_RELEASE}
+    command: odoo -u estate --dev=all
+    container_name: ${PROJECT_NAME}   
+    networks:
+      - network_odoo      
+    ports:
+      - "${PORT_SERVICE_HOST_ODOO}:${PORT_SERVICE_CONTAINER_ODOO}"
+    volumes:
+      - odoo-web:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./enterprise:/mnt/extra-addons
+      # - ./integra:/mnt/integra-addons
+      - ./custom:/mnt/custom-addons
+    environment:
+      - PYTHONUNBUFFERED=0    
+    restart: always
+  db:
+    image: postgres:${POSTGRES_IMG_VERSION}
+    container_name: ${PROJECT_NAME}_db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db:/var/lib/postgresql/data/pgdata
+    networks:
+      - network_odoo
+volumes:
+  odoo-web:
+  odoo-db:
+
+networks:
+  network_odoo:
