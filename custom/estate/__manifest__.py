@@ -16,12 +16,16 @@
       'views/estate_property_offer_views.xml',
       'views/res_users_views.xml',
       'views/estate_menus.xml',
-      'data/estate.property.type.csv'
+      'data/estate.property.type.csv',
+      'report/estate_reports.xml',
+      'report/estate_model_templates.xml',
+      'report/estate_info_view.xml'
     ],
-    'demo': [
-        # "demo/estate_tag.xml",
-        # "demo/estate_model.xml",
-        # "demo/estate_offer.xml",
+     "demo": [
+         "data/estate_property.xml"
+        #"demo/estate_tag.xml",
+        #"demo/estate_model.xml",
+        #"demo/estate_offer.xml",
     ],
     'category': 'Real Estate/Brokage',
     'installable': True,

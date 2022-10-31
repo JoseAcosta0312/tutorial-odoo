@@ -7,4 +7,9 @@
     <record id="dream_house" model="estate.property.tag">
         <field name="name">Dream House</field>
     </record>
+
+    <record id="nice_house" model="estate.property.tag">
+        <field name="name">Nice House</field>
+    </record>
+    
 </odoo>
